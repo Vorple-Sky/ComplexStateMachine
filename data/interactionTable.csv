@@ -1,7 +1,7 @@
 StateName,PNGFilename,ClickableName,NextState
-Splash,assets/splash.png,Next,Instructions
-Instructions,assets/instructions.png,Restart,Splash
-Instructions,assets/instructions.png,Start,Calm
+Clothes,assets/Clothes.png,Next,Largefit
+Largefit,assets/Largefit.png,Restart,Clothes
+Largefit,assets/Largefit.png,Start,Calm
 Calm,assets/calm.png,Next,Anxious
 Anxious,assets/anxious.png,Next,Confused
 Confused,assets/confused.png,Next,Hangry
