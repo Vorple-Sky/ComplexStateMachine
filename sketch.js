@@ -1,6 +1,6 @@
 /*******************************************************************************************************************
-      Moody
-    by Scott Kildall
+    Complex State Machine
+    by Hannah
  
   Color Palette Values:
 
