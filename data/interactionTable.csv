@@ -1,5 +1,5 @@
 StateName,PNGFilename,ClickableName,NextState
-Clothes,assets/Clothes.png,Next,Largefit
+IntroScreen,,Next,Largefit
 Largefit,assets/Largefit.png,Restart,Clothes
 Largefit,assets/Largefit.png,Start,Calm
 Calm,assets/calm.png,Next,Anxious

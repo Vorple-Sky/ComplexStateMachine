@@ -1,6 +1,6 @@
 /*******************************************************************************************************************
     Complex State Machine
-    by Hannah
+    by Hannah Gabany
  
   Color Palette Values:
 
@@ -16,7 +16,8 @@
 
 var complexStateMachine;           // the ComplexStateMachine class
 var clickablesManager;             // our clickables manager
-var clickables;                    // an array of clickable objects
+var clickables;   
+var gDebugMode = false;                 // an array of clickable objects
 
 var currentStateName = "";
 var moodImage;
@@ -45,6 +46,7 @@ function preload() {
 function setup() {
   createCanvas(1280, 720);
   imageMode(CENTER);
+  text(CENTER);
 
   // setup the clickables = this will allocate the array
   clickables = clickablesManager.setup();
@@ -64,6 +66,23 @@ function draw() {
   drawImage();
   drawOther();
   drawUI();
+  
+  if(gDebugMode == true ){
+    drawDebugInfo();
+  }
+}
+
+
+function keyTyped(){
+  if(key === ' '){
+    gDebugMode = !gDebugMode;
+  }
+}
+
+//debug function
+function drawDebugInfo(){
+  fill(225);
+  text("X: " + mouseX + "  Y:" + mouseY, 20, height - 20);
 }
 
 function setupClickables() {
