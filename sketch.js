@@ -5,25 +5,44 @@
   Color Palette Values:
 
   Black: #031927
-  Turquoise: #3ED8D2
-  Canary: #FFF689
+  Dark blue: #3ED8D2
+  Cream: #FFF689
   Sizzling Red: #F2545B
-  Pale Purple: #E9D6EC
-
-    Uses the p5.ComplexStateMachine library. Check the README.md + source code documentation
-    The index.html needs to include the line:  <script src="p5.complexStateManager.js"></script>
+  yellow: #E9D6EC
 *********************************************************************************************************************/
 
 var complexStateMachine;           // the ComplexStateMachine class
 var clickablesManager;             // our clickables manager
 var clickables;   
-var gDebugMode = false;                 // an array of clickable objects
+var gDebugMode = false;            // an array of clickable objects
 
 var currentStateName = "";
 var moodImage;
 
 var bkColor = '#031927';
 var textColor = '#E9D6EC';
+
+var displayPecentages = true; //double check if nessicary
+var displayHorizontalBars = true;
+
+var xLeftMargin = 50;     // for percentages
+var xBarOffset = 30;
+var yTopMargin = 50;
+var yOffset = 50;
+var barWidth = 30;
+var barSpacing = 50;
+
+var happyScores = [];
+const FranciscoH = 0;
+const PamelaH = 1;
+const PierreH = 2;
+const StaceyH = 3;
+
+var moneyScores = [];
+const FranciscoM = 0;
+const PamelaM = 1;
+const PierreM = 2;
+const StaceyM = 3;
 
 var buttonFont;
 
@@ -57,6 +76,13 @@ function setup() {
   // call OUR function to setup additional information about the p5.clickables
   // that are not in the array 
   setupClickables(); 
+
+  console.log("happyScores = ");
+  console.log(happyScores);
+  console.log("moneyScores = ");
+  console.log(moneyScores);
+  initializeScores();
+
  }
 
 
@@ -133,20 +159,290 @@ function setImage(imageFilename) {
 function stateChanged(newStateName) {
     currentStateName = newStateName;
     console.log(currentStateName);
+
+    //Good for model and textile worker
+    if(newStateName === "FranciscoAs1"){
+      happyScores[FranciscoH] -= 10;
+      moneyScores[FranciscoM] += 10;
+      happyScores[PamelaH] -= 10;
+      moneyScores[PamelaM] += 10;
+      happyScores[PierreH] += 5;
+      moneyScores[PierreM] += 15;
+      happyScores[StaceyH] -= 5;
+      moneyScores[StaceyM] += 0;
+    }
+    //good for most 
+    if(newStateName === "FranciscoAs2"){
+      happyScores[FranciscoH] += 10;
+      moneyScores[FranciscoM] -= 15;
+      happyScores[PamelaH] += 10;
+      moneyScores[PamelaM] += 10;
+      happyScores[PierreH] += 5;
+      moneyScores[PierreM] += 0;
+      happyScores[StaceyH] += 10;
+      moneyScores[StaceyM] += 0;
+    }
+    //good for pierre
+    if(newStateName === "FranciscoAs3"){
+      happyScores[FranciscoH] -= 10;
+      moneyScores[FranciscoM] -= 5;
+      happyScores[PamelaH] -= 10;
+      moneyScores[PamelaM] -= 5;
+      happyScores[PierreH] += 5;
+      moneyScores[PierreM] += 20;
+      happyScores[StaceyH] -= 5;
+      moneyScores[StaceyM] -= 10;
+    }
+    //good for Francisco
+    if(newStateName === "FranciscoAs4"){
+      happyScores[FranciscoH] += 15;
+      moneyScores[FranciscoM] += 15;
+      happyScores[PamelaH] -= 5;
+      moneyScores[PamelaM] += 10;
+      happyScores[PierreH] += 0;
+      moneyScores[PierreM] += 0;
+      happyScores[StaceyH] += 0;
+      moneyScores[StaceyM] -= 10;
+    }
+    //good for pierre
+    if(newStateName === "FranciscoAs5"){
+      happyScores[FranciscoH] -= 10;
+      moneyScores[FranciscoM] += 10;
+      happyScores[PamelaH] -= 10;
+      moneyScores[PamelaM] += 10;
+      happyScores[PierreH] += 5;
+      moneyScores[PierreM] += 15;
+      happyScores[StaceyH] -= 5;
+      moneyScores[StaceyM] += 0;
+    }
+    //bad for almost everyone
+    if(newStateName === "FranciscoAs6"){
+      happyScores[FranciscoH] += 10;
+      moneyScores[FranciscoM] += 5;
+      happyScores[PamelaH] += 0;
+      moneyScores[PamelaM] += 0;
+      happyScores[PierreH] -= 15;
+      moneyScores[PierreM] -= 15;
+      happyScores[StaceyH] -= 5;
+      moneyScores[StaceyM] -= 5;
+    }
+    //not great for anyone
+    if(newStateName === "PamelaAs1"){
+      happyScores[FranciscoH] -= 10;
+      moneyScores[FranciscoM] += 0;
+      happyScores[PamelaH] -= 10;
+      moneyScores[PamelaM] += 0;
+      happyScores[PierreH] += 0;
+      moneyScores[PierreM] += 0;
+      happyScores[StaceyH] -= 5;
+      moneyScores[StaceyM] += 0;
+    }
+    //Good for model 
+    if(newStateName === "PamelaAs2"){
+      happyScores[FranciscoH] += 5;
+      moneyScores[FranciscoM] += 0;
+      happyScores[PamelaH] += 15;
+      moneyScores[PamelaM] += 10;
+      happyScores[PierreH] -= 10;
+      moneyScores[PierreM] -= 10;
+      happyScores[StaceyH] += 10;
+      moneyScores[StaceyM] += 0;
+    }
+    //not great for anyone
+    if(newStateName === "PamelaAs3"){
+      happyScores[FranciscoH] -= 10;
+      moneyScores[FranciscoM] += 0;
+      happyScores[PamelaH] -= 10;
+      moneyScores[PamelaM] += 0;
+      happyScores[PierreH] += 0;
+      moneyScores[PierreM] += 0;
+      happyScores[StaceyH] -= 5;
+      moneyScores[StaceyM] += 0;
+    }
+    //not good for model or designer
+    if(newStateName === "PamelaAs4"){
+      happyScores[FranciscoH] -= 10;
+      moneyScores[FranciscoM] += 0;
+      happyScores[PamelaH] -= 20;
+      moneyScores[PamelaM] -= 10;
+      happyScores[PierreH] -= 5;
+      moneyScores[PierreM] -= 10;
+      happyScores[StaceyH] -= 5;
+      moneyScores[StaceyM] += 0;
+    }
+    //not great for anyone
+    if(newStateName === "PamelaAs5"){
+      happyScores[FranciscoH] += 0;
+      moneyScores[FranciscoM] += 0;
+      happyScores[PamelaH] -= 15;
+      moneyScores[PamelaM] -= 10;
+      happyScores[PierreH] += 0;
+      moneyScores[PierreM] -= 5;
+      happyScores[StaceyH] -= 5;
+      moneyScores[StaceyM] += 5;
+    }
+    //not great for anyone
+    if(newStateName === "PamelaAs6"){
+      happyScores[FranciscoH] -= 5;
+      moneyScores[FranciscoM] -= 5;
+      happyScores[PamelaH] += 10;
+      moneyScores[PamelaM] += 10;
+      happyScores[PierreH] += 5;
+      moneyScores[PierreM] += 5;
+      happyScores[StaceyH] += 5;
+      moneyScores[StaceyM] += 0;
+    }
+    //good for low income and worker
+    if(newStateName === "PierreAs1"){
+      happyScores[FranciscoH] -= 5;
+      moneyScores[FranciscoM] += 0;
+      happyScores[PamelaH] -= 5;
+      moneyScores[PamelaM] += 0;
+      happyScores[PierreH] += 5;
+      moneyScores[PierreM] += 10;
+      happyScores[StaceyH] += 5;
+      moneyScores[StaceyM] += 5;
+    }
+    //Okay for everyone
+    if(newStateName === "PierreAs2"){
+      happyScores[FranciscoH] += 5;
+      moneyScores[FranciscoM] += 0;
+      happyScores[PamelaH] += 5;
+      moneyScores[PamelaM] += 0;
+      happyScores[PierreH] += 5;
+      moneyScores[PierreM] += 5;
+      happyScores[StaceyH] += 5;
+      moneyScores[StaceyM] -= 5;
+    }
+    //really good for pierre
+    if(newStateName === "PierreAs3"){
+      happyScores[FranciscoH] -= 5;
+      moneyScores[FranciscoM] -= 5;
+      happyScores[PamelaH] -= 5;
+      moneyScores[PamelaM] += 0;
+      happyScores[PierreH] += 10;
+      moneyScores[PierreM] += 15;
+      happyScores[StaceyH] -= 5;
+      moneyScores[StaceyM] += 5;
+    }
+    //good for most
+    if(newStateName === "PierreAs4"){
+      happyScores[FranciscoH] += 5;
+      moneyScores[FranciscoM] += 5;
+      happyScores[PamelaH] += 5;
+      moneyScores[PamelaM] += 5;
+      happyScores[PierreH] += 10;
+      moneyScores[PierreM] += 5;
+      happyScores[StaceyH] += 5;
+      moneyScores[StaceyM] -= 10;
+    }
+    //split
+    if(newStateName === "PierreAs5"){
+      happyScores[FranciscoH] += 10;
+      moneyScores[FranciscoM] += 0;
+      happyScores[PamelaH] += 10;
+      moneyScores[PamelaM] += 0;
+      happyScores[PierreH] -= 15;
+      moneyScores[PierreM] -= 15;
+      happyScores[StaceyH] -= 5;
+      moneyScores[StaceyM] -= 5;
+    }
+    //good for all
+    if(newStateName === "PierreAs6"){
+      happyScores[FranciscoH] += 5;
+      moneyScores[FranciscoM] += 5;
+      happyScores[PamelaH] += 5;
+      moneyScores[PamelaM] += 5;
+      happyScores[PierreH] += 10;
+      moneyScores[PierreM] += 10;
+      happyScores[StaceyH] += 5;
+      moneyScores[StaceyM] += 0;
+    }
+    //okay for all
+    if(newStateName === "StaceyAs1"){
+      happyScores[FranciscoH] += 5;
+      moneyScores[FranciscoM] += 5;
+      happyScores[PamelaH] += 5;
+      moneyScores[PamelaM] += 5;
+      happyScores[PierreH] += 0;
+      moneyScores[PierreM] += 0;
+      happyScores[StaceyH] += 10;
+      moneyScores[StaceyM] -= 5;
+    }
+    //not good
+    if(newStateName === "StaceyAs2"){
+      happyScores[FranciscoH] -= 5;
+      moneyScores[FranciscoM] -= 5;
+      happyScores[PamelaH] -= 5;
+      moneyScores[PamelaM] += 0;
+      happyScores[PierreH] += 5;
+      moneyScores[PierreM] += 10;
+      happyScores[StaceyH] -= 5;
+      moneyScores[StaceyM] -= 5;
+    }
+    //only effects stacey
+    if(newStateName === "StaceyAs3"){
+      happyScores[FranciscoH] += 0;
+      moneyScores[FranciscoM] += 0;
+      happyScores[PamelaH] += 0;
+      moneyScores[PamelaM] += 0;
+      happyScores[PierreH] += 0;
+      moneyScores[PierreM] += 0;
+      happyScores[StaceyH] -= 5;
+      moneyScores[StaceyM] += 5;
+    }
+    //only good for pierre
+    if(newStateName === "StaceyAs4"){
+      happyScores[FranciscoH] -= 5;
+      moneyScores[FranciscoM] += 0;
+      happyScores[PamelaH] -= 5;
+      moneyScores[PamelaM] += 0;
+      happyScores[PierreH] += 5;
+      moneyScores[PierreM] += 10;
+      happyScores[StaceyH] += 5;
+      moneyScores[StaceyM] -= 5;
+    }
+    //good for most
+    if(newStateName === "StaceyAs5"){
+      happyScores[FranciscoH] += 10;
+      moneyScores[FranciscoM] += 5;
+      happyScores[PamelaH] += 10;
+      moneyScores[PamelaM] += 5;
+      happyScores[PierreH] += 0;
+      moneyScores[PierreM] += 0;
+      happyScores[StaceyH] += 15;
+      moneyScores[StaceyM] -= 5;
+    }
+    //Bad or neutral for most
+    if(newStateName === "StaceyAs6"){
+      happyScores[FranciscoH] -= 5;
+      moneyScores[FranciscoM] += 0;
+      happyScores[PamelaH] -= 5;
+      moneyScores[PamelaM] += 0;
+      happyScores[PierreH] += 0;
+      moneyScores[PierreM] += 10;
+      happyScores[StaceyH] -= 15;
+      moneyScores[StaceyM] += 5;
+    }
+
+    console.log(happyScores);
+    console.log(moneyScores);
 } 
 
 
-//==== KEYPRESSED ====/
-function mousePressed() {
-  // if( currentStateName === "Splash" ) {
-  //   complexStateMachine.newState("Instructions");
-  // }
-}
+
 
 //==== MODIFY THIS CODE FOR UI =====/
 
 function drawBackground() {
   background(color(bkColor));
+}
+
+function initializeScores() {
+  moneyScores = [50,50,50,50];
+  happyScores = [50,50,50,50];
+  console.log(happyScores);
+  console.log(moneyScores);
 }
 
 function drawImage() {
@@ -158,14 +454,6 @@ function drawImage() {
 function drawOther() {
   push();
 
-   /* Draw mood — if not on Splash or Instructions screen  
-   if( currentStateName !== "Splash" && currentStateName !== "Instructions") {
-    fill(color(textColor));
-    textFont(buttonFont);
-    textSize(24);
-    text(currentStateName, width/2, 50);
-  }
-  */
   pop();
 }
 
