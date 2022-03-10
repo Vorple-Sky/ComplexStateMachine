@@ -1,5 +1,13 @@
 ID,Name,PNGFilename,Text,x,y,visible
-0,Start,,Start Scenario,1000,650,yes
-1,Restart,,Restart,100,650,yes
-2,Next,,Next,1000,650,yes
-3,StartGame,,Start Story,1030,650,yes
+0,Start,,Start,1000,650,yes
+1,StartScreen,,Start,530,560,yes
+2,StartGame,,Start Story,1030,650,yes
+3,Continue,,Continue,1030,650,yes
+4,Restart,,Restart,100,650,yes
+5,Next,,Next,1000,650,yes
+6,SelectFran,,Select,95,515,yes
+7,SelectPam,,Select,385,515,yes
+8,SelectPie,,Select,682,515,yes
+9,SelectSta,,Select,972,515,yes
+10,Select1,,Select,415,580,yes
+11,Select2,,Select,844,580,yes
