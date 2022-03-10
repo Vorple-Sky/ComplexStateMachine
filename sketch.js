@@ -29,6 +29,7 @@ var xLeftMargin = 50;     // for percentages
 var xBarOffset = 30;
 var yTopMargin = 50;
 var yOffset = 50;
+var xOffset = 50;
 var barWidth = 30;
 var barSpacing = 50;
 
@@ -93,6 +94,32 @@ function draw() {
   drawOther();
   drawUI();
   
+  //
+  if(currentStateName === "FranciscoGo1" ){
+   drawPercentages();
+  }
+  if(currentStateName === "FranciscoGo2" ){
+    drawPercentages();
+  }
+  if(currentStateName === "PamelaGo1" ){
+    drawPercentages();
+  }
+  if(currentStateName === "PamelaGo2" ){
+    drawPercentages();
+  }
+  if(currentStateName === "PierreGo1" ){
+    drawPercentages();
+  }
+  if(currentStateName === "PierreGo2" ){
+    drawPercentages();
+  }
+  if(currentStateName === "StaceyGo1" ){
+    drawPercentages();
+  }
+  if(currentStateName === "StaceyGo2" ){
+    drawPercentages();
+  }
+
   if(gDebugMode == true ){
     drawDebugInfo();
   }
@@ -424,6 +451,7 @@ function stateChanged(newStateName) {
       happyScores[StaceyH] -= 15;
       moneyScores[StaceyM] += 5;
     }
+    
 
     console.log(happyScores);
     console.log(moneyScores);
@@ -455,6 +483,25 @@ function drawOther() {
   push();
 
   pop();
+}
+
+function drawPercentages() {
+  fill(0);
+  textSize(20);
+  textFont('assets/CourierPrime-Bold.ttf');
+  for( let i = 0; i < happyScores.length; i++ ) {
+    text( Math.round(happyScores[i]) + "%", 616, 407 + (i*xOffset));
+  }
+  for( let i = 0; i < moneyScores.length; i++ ) {
+    text( Math.round(moneyScores[i]) + "%", 680, 407 + (i*xOffset));
+  }
+  text("Francisco",525,407);
+  text("Pamela",525,457);
+  text("Pierre",525,507);
+  text("Stacey",525,557);
+  text("H:",623,381);
+  text("M:",690,381);
+  
 }
 
 //-- right now, it is just the clickables
