@@ -36,7 +36,7 @@ function preload() {
   clickablesManager = new ClickableManager('data/clickableLayout.csv');
   complexStateMachine = new ComplexStateMachine("data/interactionTable.csv", "data/clickableLayout.csv");
 
-  buttonFont = loadFont("AtariClassic-ExtraSmooth.ttf");
+  buttonFont = loadFont('assets/CourierPrime-Bold.ttf');
 
   nextImg  = loadImage("assets/next.png");
   nextHoverImg = loadImage("assets/next_hover.png");
@@ -91,7 +91,8 @@ function setupClickables() {
     clickables[i].onHover = clickableButtonHover;
     clickables[i].onOutside = clickableButtonOnOutside;
     clickables[i].onPress = clickableButtonPressed;
-    clickables[i].textFont = "AtariClassic-ExtraSmooth";
+    clickables[i].textFont = loadFont('assets/CourierPrime-Bold.ttf');
+    clickables[i].textSize =textSize(24);
     clickables[i].width = 220;
   }
 
@@ -100,7 +101,7 @@ function setupClickables() {
 
 // tint when mouse is over
 clickableButtonHover = function () {
-  this.color = "#F2545B";
+  this.color = "#EE964B";
   this.noTint = false;
   this.tint = "#FF0000";
 
@@ -112,7 +113,7 @@ clickableButtonHover = function () {
 // color a light gray if off
 clickableButtonOnOutside = function () {
   // backto our gray color
-  this.color = "#E9D6EC";
+  this.color = "#F4D35E";
 
   if( this.id === nextIndex ) {
     this.setImage(nextImg);
@@ -157,14 +158,14 @@ function drawImage() {
 function drawOther() {
   push();
 
-   // Draw mood — if not on Splash or Instructions screen  
+   /* Draw mood — if not on Splash or Instructions screen  
    if( currentStateName !== "Splash" && currentStateName !== "Instructions") {
     fill(color(textColor));
     textFont(buttonFont);
     textSize(24);
     text(currentStateName, width/2, 50);
   }
-
+  */
   pop();
 }
 
